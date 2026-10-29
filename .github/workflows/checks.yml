@@ -1,0 +1,54 @@
+name: Contract and evidence checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install CLI
+        run: python -m pip install -e .
+      - name: Check the validator
+        run: python -m unittest discover -s tests -v
+      - name: Run actual demo tests and check acceptance
+        run: |
+          python tools/run_demo_tests.py --output artifacts/demo.xml
+          python -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml
+          python -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal.json
+      - name: Verify stale proposal rejection
+        shell: bash
+        run: |
+          if python -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal-stale.json; then
+            echo "A stale proposal must not be accepted"
+            exit 1
+          else
+            proposal_status=$?
+            test "$proposal_status" -eq 1
+          fi
+      - name: Install optional MCP adapter
+        if: matrix.python == '3.14'
+        run: python -m pip install -e '.[mcp]'
+      - name: Exercise the stdio protocol
+        if: matrix.python == '3.14'
+        run: python tools/check_mcp.py
