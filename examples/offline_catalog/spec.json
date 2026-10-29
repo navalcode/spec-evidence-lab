@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "project": "offline-catalog-demo",
+  "objective": "Keep a fictional catalog usable through source failures and make local reservations repeatable.",
+  "scope": {"paths": ["catalog.py", "test_catalog.py"]},
+  "non_goals": ["Real bookings", "Production services", "User accounts"],
+  "requirements": [
+    {
+      "id": "CAT-CACHE",
+      "statement": "A source failure preserves the previous catalog and reports stale data.",
+      "acceptance": [
+        {"id": "AC-CACHE", "description": "Saved items remain accessible when offline.", "tests": ["test_catalog.CatalogContractTests.test_offline_keeps_previous_catalog"]},
+        {"id": "AC-EMPTY", "description": "An offline first load exposes an explicit failure.", "tests": ["test_catalog.CatalogContractTests.test_offline_without_cache_is_an_explicit_error"]},
+        {"id": "AC-RECOVERY", "description": "Successful recovery replaces stale data.", "tests": ["test_catalog.CatalogContractTests.test_recovery_replaces_stale_data"]}
+      ]
+    },
+    {
+      "id": "CAT-BOOKING",
+      "statement": "Local reservations are idempotent and require a known catalog item.",
+      "acceptance": [
+        {"id": "AC-IDEMPOTENT", "description": "Repeated reservations keep one reference.", "tests": ["test_catalog.CatalogContractTests.test_repeated_reservation_has_one_reference"]},
+        {"id": "AC-UNKNOWN", "description": "Unknown items cannot be reserved.", "tests": ["test_catalog.CatalogContractTests.test_unknown_item_cannot_be_reserved"]}
+      ]
+    }
+  ]
+}

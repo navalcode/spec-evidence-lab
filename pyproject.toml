@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spec-evidence-lab"
+version = "0.1.0"
+description = "Trace acceptance criteria to JUnit results and review structured AI proposals."
+requires-python = ">=3.11"
+authors = [{name = "Manuel Naval"}]
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = []
+
+[project.optional-dependencies]
+mcp = ["mcp==2.3.0"]
+
+[project.scripts]
+spec-evidence = "spec_evidence.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["spec_evidence*"]
