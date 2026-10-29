@@ -1,6 +1,6 @@
 # Spec Evidence Lab
 
-[Español](README.es.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml) · [![CI](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
+[Español](README.es.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
 An original engineering demo that connects a feature specification, acceptance criteria, test results and structured AI proposals. The CLI uses the Python standard library. An optional MCP adapter exposes the same checks over stdio.
 
@@ -56,6 +56,18 @@ python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --prop
 
 The added `presentation` object contains the language and summary. Machine keys, status values, test identities, exit codes and the specification hash do not change. Unknown configuration fields, duplicate keys, unsupported languages and oversized input fail validation. Diagnostics and MCP responses retain their machine contract; this feature does not translate requirements, judge prose or apply a corporate writing prompt.
 
+## Human review in the terminal
+
+Use `--format text` for a compact result with criterion/test IDs, issue codes and the specification hash. `--language en|es` selects the summary; diagnostic codes and proposal messages retain their English contract. Terminal controls in supplied identifiers are escaped. The default remains JSON for automation, and MCP is unchanged.
+
+```sh
+python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --format text
+python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal-stale.json --format text --language es
+python3 -m spec_evidence check --help
+```
+
+Text output keeps the same exit codes: 0 for a consistent result, 1 for failed evidence/revision and 2 for invalid input. A passing text summary still requires review of evidence provenance and test adequacy. See [presentation decisions](DESIGN.md).
+
 ## Optional MCP server
 
 The official Python MCP SDK is pinned in the optional dependency group:
@@ -85,7 +97,7 @@ Both tools accept **contents**, not filesystem paths. They have read-only, idemp
 - [`tests/`](tests/): positive and negative behavior checks.
 - [`examples/offline_catalog/`](examples/offline_catalog/): original fixture, contract and proposals.
 
-Validation covers 40 checker/configuration tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
+Validation covers 44 checker/configuration/presentation tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
 
 Local validation used Python 3.14. [GitHub Actions passed on Python 3.11 and 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), including the MCP smoke check on 3.14. The badge links to current workflow results.
 
@@ -94,3 +106,5 @@ Reference for the optional adapter: [official MCP Python SDK](https://github.com
 ## License
 
 Original source and documentation: [MIT](LICENSE), copyright 2026 Manuel Naval. Third-party dependencies keep their own licenses.
+
+The terminal presentation increment passes all 44 checker tests locally; prior CI links above describe their recorded revision. Current workflow results are available from the badge.

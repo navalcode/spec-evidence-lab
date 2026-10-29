@@ -1,6 +1,6 @@
 # Spec Evidence Lab
 
-[English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml) · [![CI](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
+[English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
 Demostración original que conecta una especificación, sus criterios de aceptación, resultados de tests y propuestas estructuradas de IA. La CLI utiliza la biblioteca estándar de Python. Un adaptador opcional expone las mismas comprobaciones mediante MCP por stdio.
 
@@ -54,6 +54,18 @@ python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --prop
 
 El objeto añadido `presentation` contiene idioma y resumen. No cambian claves, estados, identidad de tests, códigos de salida ni hash de la especificación. Campos desconocidos, claves duplicadas, idiomas no soportados y entradas excesivas fallan. Diagnósticos y respuestas MCP conservan su contrato; esta función no traduce requisitos, evalúa prosa o aplica un prompt corporativo.
 
+## Revisión humana en el terminal
+
+Usa `--format text` para leer un resultado breve con IDs de criterios/tests, códigos de incidencias y hash de la especificación. `--language en|es` selecciona el resumen; los códigos de diagnóstico y mensajes de propuestas conservan su contrato inglés. Los controles de terminal en identificadores se escapan. JSON sigue siendo el formato predeterminado y MCP no cambia.
+
+```sh
+python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --format text
+python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal-stale.json --format text --language es
+python3 -m spec_evidence check --help
+```
+
+La salida de texto conserva los códigos: 0 para resultado coherente, 1 para evidencia fallida/revisión y 2 para entrada inválida. Un resumen correcto sigue requiriendo revisar la procedencia de la evidencia y suficiencia de los tests. [Decisiones de presentación](DESIGN.md).
+
 ## Servidor MCP opcional
 
 ```sh
@@ -76,7 +88,7 @@ Entrada del servidor: `.venv/bin/python -m spec_evidence.mcp_server`. Expone `ch
 - [`tests/`](tests/): casos positivos y negativos.
 - [`examples/offline_catalog/`](examples/offline_catalog/): implementación, contrato y propuestas ficticias.
 
-La validación cubre 40 tests de herramienta/configuración, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
+La validación cubre 44 tests de herramienta/configuración, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
 
 La validación local utiliza Python 3.14. [GitHub Actions ha pasado en Python 3.11 y 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), con la comprobación MCP en 3.14. El distintivo enlaza los resultados actuales del workflow.
 
@@ -85,3 +97,5 @@ Referencia del adaptador opcional: [SDK oficial de MCP para Python](https://gith
 ## Licencia
 
 Código y documentación originales: [MIT](LICENSE), copyright 2026 Manuel Naval. Las dependencias de terceros conservan sus propias licencias.
+
+El incremento de presentación del terminal pasa localmente los44 tests del checker; los enlaces anteriores de CI describen su revisión registrada. El badge lleva al workflow actual.

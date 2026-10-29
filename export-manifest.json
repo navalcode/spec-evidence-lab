@@ -1,0 +1,106 @@
+[
+  {
+    "path": ".github/workflows/checks.yml",
+    "sha256": "7c935be18e20170f776ec1278c0e4493652b9da7eb7441223ae9bacd82afc534"
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "15b5eff1550bccf6ca6179add0f19ceb7c4b4463c2d916aceb01d45cf866e7a8"
+  },
+  {
+    "path": "DESIGN.md",
+    "sha256": "57b1f7cd9cf2536f20766cb29d6ed41432cd40c13487bce732ae2aeee8cf2d65"
+  },
+  {
+    "path": "LICENSE",
+    "sha256": "8ee98a68db08740852b491de91922961bb928aaa13f9897c078a0e6eb3e1218a"
+  },
+  {
+    "path": "README.es.md",
+    "sha256": "d051d12f894c9c5a63c8f8aa5cec54a85c7964ba7a72dd79952c7feb5262612f"
+  },
+  {
+    "path": "README.md",
+    "sha256": "b3230e559481f5053ac06256227a175206882339aa22edf0a2dc35573d954418"
+  },
+  {
+    "path": "examples/offline_catalog/catalog.py",
+    "sha256": "610e5f9701296cc41a48816f848d53fb45fde4ac5a001d46ec7b181f0a4621f9"
+  },
+  {
+    "path": "examples/offline_catalog/proposal-stale.json",
+    "sha256": "b73e13a5c85f2434646e41f9c59c824a62d5f12a0804bbd0f20abe26ec5bcdc6"
+  },
+  {
+    "path": "examples/offline_catalog/proposal.json",
+    "sha256": "c883621005639bfdd4ffa8195f4343645fb5c39d550b0e571704cce292dce9fc"
+  },
+  {
+    "path": "examples/offline_catalog/spec.json",
+    "sha256": "0c18e6a3c117486ea684108efac6eafd7e48a56eddd646d9c63aa4068a8462b0"
+  },
+  {
+    "path": "examples/offline_catalog/test_catalog.py",
+    "sha256": "563a48ee5fd686ca95f5814674d005fc108f0596619b3a9f09990fea20dbe7db"
+  },
+  {
+    "path": "examples/preferences.es.json",
+    "sha256": "d040400051046bd90a43cb59051eb432178068b1ea30426e0c39e72d978d1a1c"
+  },
+  {
+    "path": "pyproject.toml",
+    "sha256": "4de09d9c99b167ad2ff3ed80d954dcd995dd0a20cb04d630abc6889f79209f28"
+  },
+  {
+    "path": "spec_evidence/__init__.py",
+    "sha256": "dab4d0a61f2515eb7cedb33bf97ded301d4ecaeffa65437dd1b6beffdf648078"
+  },
+  {
+    "path": "spec_evidence/__main__.py",
+    "sha256": "c16d2d29d6f0f0ed2a25b0b58916a501012935b1dd949dca651b5d29235ced70"
+  },
+  {
+    "path": "spec_evidence/contracts.py",
+    "sha256": "9da6489e639b41ab3bf6384e1639f2dcc818c4cb8bdfc9591688c5a0dac2d12d"
+  },
+  {
+    "path": "spec_evidence/evidence.py",
+    "sha256": "c2bcf031cc5f1cdb77f2e81a55b57e0dbb0b11e74aa7df572d5d92cac0bfdc3d"
+  },
+  {
+    "path": "spec_evidence/mcp_server.py",
+    "sha256": "06aec17d5b7886a1b1abd98fea64ec86791d9ec495b32cdef728d5c7b3b9e9ce"
+  },
+  {
+    "path": "spec_evidence/presentation.py",
+    "sha256": "826a534be83fb8a725d97c306881d10dd8f3708bf7956f7bb2ebbf4d0ac09626"
+  },
+  {
+    "path": "spec_evidence/proposals.py",
+    "sha256": "4ab9573ea8ae7e7aa1986e67bcfb97e56580926898a51662c5daa5b21d497c99"
+  },
+  {
+    "path": "tests/test_contracts_and_evidence.py",
+    "sha256": "00891ccf2e5fd4372df3186ea4e1f09c5c3a37c898dda64d8edb46792f0e12da"
+  },
+  {
+    "path": "tests/test_presentation.py",
+    "sha256": "3313dad708abee8557abec18c5bc89b5890a92cb953e2f3598cc8950e628249e"
+  },
+  {
+    "path": "tests/test_proposals_and_cli.py",
+    "sha256": "eac3c0178d038c532d10262da3f8bc5cad56f4c7d827162bc35841b5e2801c91"
+  },
+  {
+    "path": "tests/test_text_cli.py",
+    "sha256": "43960329fbde93d6290b2c2da34fc76380f857ed9c3953f6c578971f7462297c"
+  },
+  {
+    "path": "tools/check_mcp.py",
+    "sha256": "2ad1148c9c042c18fe90af05a55dbb8da232bb0a171e9e9594d24bca8f798389"
+  },
+  {
+    "path": "tools/run_demo_tests.py",
+    "sha256": "4d70b970102a624ab8c159d13473fd0099b4e935245f2a6d189522235f91b5ee"
+  }
+]
