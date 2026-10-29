@@ -43,6 +43,17 @@ Se admiten entradas de hasta 2 MiB. El JSON usa UTF-8, hasta 64 niveles de anida
 
 Códigos de salida: **0** para resultado coherente, **1** para aceptación fallida o propuesta que necesita revisión y **2** para entrada inválida.
 
+## Idioma y preferencias de proyecto
+
+El reporte JSON predeterminado conserva su formato. Para añadir un resumen humano opcional, usa `--language en|es` o un archivo JSON acotado que contenga únicamente `language`. La opción explícita prevalece sobre el archivo:
+
+```sh
+python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --config examples/preferences.es.json
+python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal.json --config examples/preferences.es.json --language en
+```
+
+El objeto añadido `presentation` contiene idioma y resumen. No cambian claves, estados, identidad de tests, códigos de salida ni hash de la especificación. Campos desconocidos, claves duplicadas, idiomas no soportados y entradas excesivas fallan. Diagnósticos y respuestas MCP conservan su contrato; esta función no traduce requisitos, evalúa prosa o aplica un prompt corporativo.
+
 ## Servidor MCP opcional
 
 ```sh
@@ -65,9 +76,9 @@ Entrada del servidor: `.venv/bin/python -m spec_evidence.mcp_server`. Expone `ch
 - [`tests/`](tests/): casos positivos y negativos.
 - [`examples/offline_catalog/`](examples/offline_catalog/): implementación, contrato y propuestas ficticias.
 
-La validación inicial ejecutó 34 tests de la herramienta, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
+La validación cubre 40 tests de herramienta/configuración, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
 
-La validación local utiliza Python 3.14. [GitHub Actions ha pasado en Python 3.11 y 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40861517775), con la comprobación MCP en 3.14. El distintivo enlaza los resultados actuales del workflow.
+La validación local utiliza Python 3.14. [GitHub Actions ha pasado en Python 3.11 y 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), con la comprobación MCP en 3.14. El distintivo enlaza los resultados actuales del workflow.
 
 Referencia del adaptador opcional: [SDK oficial de MCP para Python](https://github.com/modelcontextprotocol/python-sdk).
 

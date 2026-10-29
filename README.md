@@ -45,6 +45,17 @@ Inputs are bounded to 2 MiB. JSON uses UTF-8, at most 64 nesting levels, finite 
 
 Exit codes: **0** for a consistent result, **1** for failed acceptance or a proposal needing revision, **2** for invalid input.
 
+## Language and project preferences
+
+The default JSON report stays unchanged. To add an optional human summary, use `--language en|es` or a bounded JSON preferences file containing only `language`. An explicit flag overrides the file:
+
+```sh
+python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --config examples/preferences.es.json
+python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal.json --config examples/preferences.es.json --language en
+```
+
+The added `presentation` object contains the language and summary. Machine keys, status values, test identities, exit codes and the specification hash do not change. Unknown configuration fields, duplicate keys, unsupported languages and oversized input fail validation. Diagnostics and MCP responses retain their machine contract; this feature does not translate requirements, judge prose or apply a corporate writing prompt.
+
 ## Optional MCP server
 
 The official Python MCP SDK is pinned in the optional dependency group:
@@ -74,9 +85,9 @@ Both tools accept **contents**, not filesystem paths. They have read-only, idemp
 - [`tests/`](tests/): positive and negative behavior checks.
 - [`examples/offline_catalog/`](examples/offline_catalog/): original fixture, contract and proposals.
 
-The first validation ran 34 checker tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
+Validation covers 40 checker/configuration tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
 
-Local validation used Python 3.14. [GitHub Actions passed on Python 3.11 and 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40861517775), including the MCP smoke check on 3.14. The badge links to current workflow results.
+Local validation used Python 3.14. [GitHub Actions passed on Python 3.11 and 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), including the MCP smoke check on 3.14. The badge links to current workflow results.
 
 Reference for the optional adapter: [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).
 
