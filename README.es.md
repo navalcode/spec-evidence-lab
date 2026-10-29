@@ -1,6 +1,6 @@
 # Spec Evidence Lab
 
-[English](README.md)
+[English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
 Demostración original que conecta una especificación, sus criterios de aceptación, resultados de tests y propuestas estructuradas de IA. La CLI utiliza la biblioteca estándar de Python. Un adaptador opcional expone las mismas comprobaciones mediante MCP por stdio.
 
@@ -67,7 +67,7 @@ Entrada del servidor: `.venv/bin/python -m spec_evidence.mcp_server`. Expone `ch
 
 La validación inicial ejecutó 34 tests de la herramienta, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
 
-La validación local utiliza Python 3.14. El workflow preparado comprueba Python 3.11 y 3.14 y ejecuta MCP en 3.14. Su ejecución remota está pendiente de publicación; el archivo por sí solo no equivale a un resultado de CI.
+La validación local utiliza Python 3.14. [GitHub Actions ha pasado en Python 3.11 y 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40861517775), con la comprobación MCP en 3.14. El distintivo enlaza los resultados actuales del workflow.
 
 Referencia del adaptador opcional: [SDK oficial de MCP para Python](https://github.com/modelcontextprotocol/python-sdk).
 

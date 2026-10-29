@@ -1,6 +1,6 @@
 # Spec Evidence Lab
 
-[Español](README.es.md)
+[Español](README.es.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
 An original engineering demo that connects a feature specification, acceptance criteria, test results and structured AI proposals. The CLI uses the Python standard library. An optional MCP adapter exposes the same checks over stdio.
 
@@ -76,7 +76,7 @@ Both tools accept **contents**, not filesystem paths. They have read-only, idemp
 
 The first validation ran 34 checker tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
 
-Local validation used Python 3.14. A prepared GitHub Actions workflow targets Python 3.11 and 3.14, with the MCP smoke check on 3.14. Its remote execution is pending publication; the file alone is not a CI result.
+Local validation used Python 3.14. [GitHub Actions passed on Python 3.11 and 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40861517775), including the MCP smoke check on 3.14. The badge links to current workflow results.
 
 Reference for the optional adapter: [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).
 
