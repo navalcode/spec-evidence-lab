@@ -5,6 +5,7 @@ import sys
 from .contracts import ContractError, MAX_INPUT_BYTES, load_json, spec_digest
 from .evidence import check_results
 from .proposals import review_proposal
+from .presentation import configured_language, with_presentation
 
 
 def read_bounded(path):
@@ -21,8 +22,15 @@ def main(argv=None):
     digest = sub.add_parser("digest");digest.add_argument("--spec", required=True)
     check = sub.add_parser("check");check.add_argument("--spec", required=True);check.add_argument("--junit", required=True)
     review = sub.add_parser("review");review.add_argument("--spec", required=True);review.add_argument("--proposal", required=True)
+    for command in (digest, check, review):
+        command.add_argument("--config", help="Optional JSON configuration containing language: en or es")
+        command.add_argument("--language", choices=["en", "es"], help="Human summary language; overrides configuration")
     args = parser.parse_args(argv)
+    language = args.language
     try:
+        if args.config:
+            preference = configured_language(load_json(read_bounded(args.config)))
+            language = args.language or preference
         spec = load_json(read_bounded(args.spec))
         if args.command == "digest":
             result = {"spec_sha256": spec_digest(spec)}
@@ -31,9 +39,9 @@ def main(argv=None):
         else:
             result = review_proposal(spec, load_json(read_bounded(args.proposal)))
     except (ContractError, OSError) as error:
-        print(json.dumps({"status": "invalid_input", "error": str(error)}))
+        print(json.dumps(with_presentation({"status": "invalid_input", "error": str(error)}, language), ensure_ascii=False))
         return 2
-    print(json.dumps(result, indent=2))
+    print(json.dumps(with_presentation(result, language), indent=2, ensure_ascii=False))
     return 1 if result.get("status") in {"failed", "needs_revision"} else 0
 
 
