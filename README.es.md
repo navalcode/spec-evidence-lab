@@ -1,6 +1,6 @@
 # Spec Evidence Lab
 
-[English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
+[English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml) · [![CI](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
 Demostración original que conecta una especificación, sus criterios de aceptación, resultados de tests y propuestas estructuradas de IA. La CLI utiliza la biblioteca estándar de Python. Un adaptador opcional expone las mismas comprobaciones mediante MCP por stdio.
 
