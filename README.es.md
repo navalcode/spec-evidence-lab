@@ -2,15 +2,9 @@
 
 [English](README.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
-Demostración original que conecta una especificación, sus criterios de aceptación, resultados de tests y propuestas estructuradas de IA. La CLI utiliza la biblioteca estándar de Python. Un adaptador opcional expone las mismas comprobaciones mediante MCP por stdio.
+CLI de Python para comparar los tests exigidos por una especificación con resultados JUnit y revisar propuestas estructuradas de cambios. Identifica tests ausentes, fallidos u omitidos y propuestas que no coinciden con el hash, los requisitos, los tests o las rutas permitidas.
 
-## La pregunta de ingeniería
-
-¿Qué permite distinguir un plan plausible de evidencias que cubren un contrato explícito?
-
-La especificación declara identificadores estables, criterios de aceptación, tests esperados, rutas permitidas y exclusiones. El comprobador los relaciona con resultados JUnit. El revisor comprueba si una propuesta sigue vinculada a la especificación vigente y respeta su alcance.
-
-Una propuesta válida queda preparada para revisión humana. La comprobación de resultados también exige revisar el significado de las pruebas y su procedencia. Ningún resultado del programa aprueba automáticamente un cambio.
+La especificación declara IDs estables, tests esperados, rutas y exclusiones. Un resultado correcto indica coherencia con esas declaraciones. Quien revisa debe comprobar de dónde viene el informe y si los tests verifican el comportamiento previsto. Una propuesta válida sigue requiriendo revisión humana y no ejecuta cambios. La CLI usa la biblioteca estándar; un adaptador opcional expone las mismas comprobaciones por MCP sobre stdio.
 
 ## Ejecutar el ejemplo
 
@@ -52,11 +46,11 @@ python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit
 python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal.json --config examples/preferences.es.json --language en
 ```
 
-El objeto añadido `presentation` contiene idioma y resumen. No cambian claves, estados, identidad de tests, códigos de salida ni hash de la especificación. Campos desconocidos, claves duplicadas, idiomas no soportados y entradas excesivas fallan. Diagnósticos y respuestas MCP conservan su contrato; esta función no traduce requisitos, evalúa prosa o aplica un prompt corporativo.
+El objeto añadido `presentation` contiene idioma y resumen. No cambian claves, estados, identidad de tests, códigos de salida ni hash de la especificación. Campos desconocidos, claves duplicadas, idiomas no soportados y entradas excesivas fallan. Diagnósticos y respuestas MCP conservan su contrato; la preferencia de idioma solo afecta a la presentación.
 
 ## Revisión humana en el terminal
 
-Usa `--format text` para leer un resultado breve con IDs de criterios/tests, códigos de incidencias y hash de la especificación. `--language en|es` selecciona el resumen; los códigos de diagnóstico y mensajes de propuestas conservan su contrato inglés. Los controles de terminal en identificadores se escapan. JSON sigue siendo el formato predeterminado y MCP no cambia.
+Usa `--format text` para leer un resultado breve con IDs de criterios/tests, códigos de incidencias y hash de la especificación. `--language en|es` selecciona el resumen; los códigos de incidencia se conservan y las explicaciones indican qué campo corregir. Los controles de terminal en identificadores se escapan. JSON sigue siendo el formato predeterminado y MCP no cambia.
 
 ```sh
 python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --format text
@@ -88,14 +82,8 @@ Entrada del servidor: `.venv/bin/python -m spec_evidence.mcp_server`. Expone `ch
 - [`tests/`](tests/): casos positivos y negativos.
 - [`examples/offline_catalog/`](examples/offline_catalog/): implementación, contrato y propuestas ficticias.
 
-La validación cubre 44 tests de herramienta/configuración, cinco del ejemplo y cuatro comprobaciones del protocolo MCP. El alcance es demostrar un proceso verificable; no acreditar la autenticidad de reportes externos, demostrar cualquier requisito o medir productividad de un modelo.
-
-La validación local utiliza Python 3.14. [GitHub Actions ha pasado en Python 3.11 y 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), con la comprobación MCP en 3.14. El distintivo enlaza los resultados actuales del workflow.
-
-Referencia del adaptador opcional: [SDK oficial de MCP para Python](https://github.com/modelcontextprotocol/python-sdk).
+Comprobaciones actuales: **44 tests de validador/configuración/presentación, cinco del ejemplo y cuatro llamadas MCP reales**. [Verificación](docs/VERIFICATION.md), en inglés, recoge los comandos, la comparación de salidas de máquina, los fallos y los resultados de CI. El adaptador usa el [SDK oficial Python de MCP](https://github.com/modelcontextprotocol/python-sdk), fijado en 2.3.0.
 
 ## Licencia
 
 Código y documentación originales: [MIT](LICENSE), copyright 2026 Manuel Naval. Las dependencias de terceros conservan sus propias licencias.
-
-El incremento de presentación del terminal pasa localmente los44 tests del checker; los enlaces anteriores de CI describen su revisión registrada. El badge lleva al workflow actual.

@@ -41,7 +41,7 @@ class TextCliTests(unittest.TestCase):
             self.assertEqual(1, code)
             self.assertIn('failed', output)
             self.assertIn('missing: ' + identifier, output)
-            self.assertIn('provenance' if language == 'en' else 'evidencia', output)
+            self.assertIn('provenance' if language == 'en' else 'procedencia', output)
 
     def test_proposal_rejection_shows_issue_code_and_no_execution(self):
         (self.root / 'proposal.json').write_text(json.dumps({**proposal(self.spec), 'spec_sha256': '0' * 64}))
@@ -49,6 +49,7 @@ class TextCliTests(unittest.TestCase):
             code, output = self.invoke('review', language)
             self.assertEqual(1, code)
             self.assertIn('stale_spec:', output)
+            self.assertIn('digest', output)
             self.assertIn('No changes were executed.' if language == 'en' else 'No se ejecutaron cambios.', output)
 
     def test_digest_and_invalid_input_remain_distinct_from_acceptance(self):

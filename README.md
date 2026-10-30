@@ -2,15 +2,9 @@
 
 [Español](README.es.md) · [![Checks](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml/badge.svg)](https://github.com/navalcode/spec-evidence-lab/actions/workflows/checks.yml)
 
-An original engineering demo that connects a feature specification, acceptance criteria, test results and structured AI proposals. The CLI uses the Python standard library. An optional MCP adapter exposes the same checks over stdio.
+A Python CLI that checks required test IDs against JUnit results and reviews structured change proposals. It identifies missing, failed or skipped tests and proposals that do not match the specification’s hash, requirements, tests or allowed paths.
 
-## The engineering question
-
-What would let a reviewer distinguish a plausible plan from evidence that covers an explicit contract?
-
-The specification in this lab declares stable requirement and acceptance IDs, expected test identities, allowed paths and non-goals. The checker relates it to supplied JUnit results. The proposal reviewer checks whether a structured plan still references the current specification and stays within its declared scope.
-
-Neither a valid plan nor a passing schema approves a change. Proposal results retain `human_review_required: true`. Test results retain `meaning_review_required: true` because the runner's provenance and the adequacy of the tests still need review.
+The specification declares stable IDs, expected tests, allowed paths and non-goals. A passing result describes consistency with those declarations. The reviewer must still check where the test report came from and whether the tests verify the intended behavior. A valid proposal remains subject to human review and executes no changes. The CLI uses the standard library; an optional MCP adapter exposes the same checks over stdio.
 
 ## Run the working example
 
@@ -54,11 +48,11 @@ python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit
 python3 -m spec_evidence review --spec examples/offline_catalog/spec.json --proposal examples/offline_catalog/proposal.json --config examples/preferences.es.json --language en
 ```
 
-The added `presentation` object contains the language and summary. Machine keys, status values, test identities, exit codes and the specification hash do not change. Unknown configuration fields, duplicate keys, unsupported languages and oversized input fail validation. Diagnostics and MCP responses retain their machine contract; this feature does not translate requirements, judge prose or apply a corporate writing prompt.
+The added `presentation` object contains the language and summary. Machine keys, status values, test identities, exit codes and the specification hash do not change. Unknown configuration fields, duplicate keys, unsupported languages and oversized input fail validation. Diagnostics and MCP responses retain their machine contract; the language preference only changes the presentation layer.
 
 ## Human review in the terminal
 
-Use `--format text` for a compact result with criterion/test IDs, issue codes and the specification hash. `--language en|es` selects the summary; diagnostic codes and proposal messages retain their English contract. Terminal controls in supplied identifiers are escaped. The default remains JSON for automation, and MCP is unchanged.
+Use `--format text` for a compact result with criterion/test IDs, issue codes and the specification hash. `--language en|es` selects the summary; issue codes stay stable, while proposal explanations tell you how to revise each field. Terminal controls in supplied identifiers are escaped. The default remains JSON for automation, and MCP is unchanged.
 
 ```sh
 python3 -m spec_evidence check --spec examples/offline_catalog/spec.json --junit artifacts/demo.xml --format text
@@ -97,14 +91,8 @@ Both tools accept **contents**, not filesystem paths. They have read-only, idemp
 - [`tests/`](tests/): positive and negative behavior checks.
 - [`examples/offline_catalog/`](examples/offline_catalog/): original fixture, contract and proposals.
 
-Validation covers 44 checker/configuration/presentation tests, five bundled behavior tests and four MCP protocol checks. This is a focused example of spec-driven engineering and tool integration. It does not attest the authenticity of arbitrary reports, prove arbitrary requirements correct or measure an AI model's productivity.
-
-Local validation used Python 3.14. [GitHub Actions passed on Python 3.11 and 3.14](https://github.com/navalcode/spec-evidence-lab/actions/runs/40882781413), including the MCP smoke check on 3.14. The badge links to current workflow results.
-
-Reference for the optional adapter: [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).
+Current checks: **44 validator/configuration/presentation tests, five example tests and four real MCP protocol checks**. [Verification](docs/VERIFICATION.md) records the commands, machine-output comparisons, failure cases and hosted results. The optional adapter uses the [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk), pinned to 2.3.0.
 
 ## License
 
 Original source and documentation: [MIT](LICENSE), copyright 2026 Manuel Naval. Third-party dependencies keep their own licenses.
-
-The terminal presentation increment passes all 44 checker tests locally; prior CI links above describe their recorded revision. Current workflow results are available from the badge.

@@ -9,7 +9,7 @@
   },
   {
     "path": "DESIGN.md",
-    "sha256": "57b1f7cd9cf2536f20766cb29d6ed41432cd40c13487bce732ae2aeee8cf2d65"
+    "sha256": "ed99f5d655a68e4307b9a86d0355804f313468c1c2fc0479925fc3335221d402"
   },
   {
     "path": "LICENSE",
@@ -17,11 +17,15 @@
   },
   {
     "path": "README.es.md",
-    "sha256": "d051d12f894c9c5a63c8f8aa5cec54a85c7964ba7a72dd79952c7feb5262612f"
+    "sha256": "154d6addc335f23268faa4a1873ce6a17339e3676379c54b4d4b416c0294281e"
   },
   {
     "path": "README.md",
-    "sha256": "b3230e559481f5053ac06256227a175206882339aa22edf0a2dc35573d954418"
+    "sha256": "36e8860943374c6464778eec17ba014f9667d98bbabe2705ab4e69b4b8e78be8"
+  },
+  {
+    "path": "docs/VERIFICATION.md",
+    "sha256": "a7322c2b3903ca94fb1c20841ca06b28083afa329ada39c62a2417dfcaaec37a"
   },
   {
     "path": "examples/offline_catalog/catalog.py",
@@ -57,7 +61,7 @@
   },
   {
     "path": "spec_evidence/__main__.py",
-    "sha256": "c16d2d29d6f0f0ed2a25b0b58916a501012935b1dd949dca651b5d29235ced70"
+    "sha256": "9dfefbbd6856b79592ab35c38abef5acef0dd747642674dbd032a179b2f0471d"
   },
   {
     "path": "spec_evidence/contracts.py",
@@ -73,7 +77,7 @@
   },
   {
     "path": "spec_evidence/presentation.py",
-    "sha256": "826a534be83fb8a725d97c306881d10dd8f3708bf7956f7bb2ebbf4d0ac09626"
+    "sha256": "41408061dc214314d4778690e2c0749b1b6de4935f2bad909178da57710cfb7d"
   },
   {
     "path": "spec_evidence/proposals.py",
@@ -93,7 +97,7 @@
   },
   {
     "path": "tests/test_text_cli.py",
-    "sha256": "43960329fbde93d6290b2c2da34fc76380f857ed9c3953f6c578971f7462297c"
+    "sha256": "9be328c10fa325551a521e2a45fc094d380b25c7944d59b937d3c09980f6a78a"
   },
   {
     "path": "tools/check_mcp.py",

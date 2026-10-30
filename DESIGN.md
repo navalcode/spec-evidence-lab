@@ -1,9 +1,9 @@
 # Terminal presentation
 
-Spec Evidence is a CLI/MCP tool. Its visual surface is a plain terminal report and structured data, not a dashboard. Terminal fonts, size, theme and accessibility remain under the reader's control. No ANSI, motion, browser, color-only status or added package is required.
+`--format text` presents the project, stable result status and an explanation, followed by acceptance criteria or proposal issues and the canonical specification hash. Missing, skipped and failed tests keep their IDs and status codes. Proposal issues keep their codes and explain which field to revise. A proposal that passes these checks still needs human review.
 
-Use `--format text` for human review. Read top to bottom: project and stable status, a short explanation, acceptance criteria or proposal issues, and canonical specification hash. Failed/missing/skipped tests retain identifiers and machine status; proposal issues retain their codes. A consistent result still requires evidence provenance/test adequacy review. A valid proposal executes nothing.
+The text describes what the supplied report says. It asks the reader to check its provenance and what the tests verify; it does not count a passing test as proof that an arbitrary requirement is correct. A failed result identifies the affected criteria/tests and asks for a fresh JUnit report. The tool never runs proposed changes.
 
-JSON is the default and retains its schema/exit codes. Language preferences select EN/ES summaries without translating machine keys, supplied IDs or technical issue messages. Non-printable characters from supplied identifiers are escaped in text mode. Native terminal wrapping handles long IDs; do not truncate evidence.
+JSON remains the default, with stable machine keys and exit codes. `--language en|es` or a language config selects human summaries; proposal guidance is localized in text mode. Contract diagnostics and supplied IDs retain their technical wording. Non-printable characters in text are escaped. Long identifiers wrap in the reader’s terminal and are not truncated.
 
-Verification covers failed/missing evidence, stale proposals, invalid input, unchanged default JSON and hash, language precedence and terminal-control escaping. Command transcripts represent actual executions, never generated screen mockups.
+[Verification](docs/VERIFICATION.md) records the current commands, machine-output comparison, negative cases and MCP checks. Terminal typography, contrast and wrapping belong to the reader’s terminal; the tool requires no colors or graphical interface.

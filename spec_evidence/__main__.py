@@ -17,12 +17,12 @@ def read_bounded(path):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Inspect contracts, JUnit evidence and structured AI proposals.")
+    parser = argparse.ArgumentParser(description="Check required tests against JUnit, or review a structured change proposal.")
     sub = parser.add_subparsers(dest="command", required=True)
-    digest = sub.add_parser("digest", help="Compute the canonical specification hash; no tests run")
-    check = sub.add_parser("check", help="Relate acceptance criteria to supplied JUnit results")
+    digest = sub.add_parser("digest", help="Print the canonical SHA-256 of a specification")
+    check = sub.add_parser("check", help="Check required test IDs against a JUnit report")
     check.add_argument("--junit", required=True, help="JUnit XML report from your test runner")
-    review = sub.add_parser("review", help="Check a structured proposal without executing changes")
+    review = sub.add_parser("review", help="Check proposal scope, test plan and specification hash")
     review.add_argument("--proposal", required=True, help="Structured proposal JSON")
     for command in (digest, check, review):
         command.add_argument("--spec", required=True, help="Feature specification JSON")
